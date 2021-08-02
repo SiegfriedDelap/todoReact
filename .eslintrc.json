@@ -23,17 +23,14 @@
             "error",
             "tab"
         ],
-        "linebreak-style": [
-            "error",
-            "windows"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
+        "linebreak-style": 0,
+        "quotes": 0,
         "semi": [
             "error",
             "always"
-        ]
+        ],
+        
+        "react/prop-types": 0
+        
     }
 }
