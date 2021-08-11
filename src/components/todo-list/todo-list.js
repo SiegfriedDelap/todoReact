@@ -8,20 +8,25 @@
 //эквивалентно label={item.label}; important = {item.important}
 
 import React from "react";
-import TodoListItem from "./todo-list-item";
+import TodoListItem from "../todo-list-item";
+import './todo-list.css';
+
+
 
 const TodoList = ({todo}) =>{
 	const elements = todo.map((item)=>{
+		const { id, ...itemProps} = item;
+
 		return(
-			<li>
-				<TodoListItem {...item}/> 
+			<li key={id} className = "list-group-item">
+				<TodoListItem {...itemProps}/> 
 			</li>
 		);
 		
 	});
 
 	return(
-		<ul>
+		<ul className = "list-group todo-list">
 			{elements}
 		</ul>
 	);
