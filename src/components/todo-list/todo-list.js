@@ -13,13 +13,16 @@ import './todo-list.css';
 
 
 
-const TodoList = ({todo}) =>{
+const TodoList = ({todo, onDeleted}) =>{
 	const elements = todo.map((item)=>{
 		const { id, ...itemProps} = item;
 
 		return(
 			<li key={id} className = "list-group-item">
-				<TodoListItem {...itemProps}/> 
+				<TodoListItem 
+					{...itemProps}
+					onDeleted={()=> onDeleted(id)}
+				/> 
 			</li>
 		);
 		
