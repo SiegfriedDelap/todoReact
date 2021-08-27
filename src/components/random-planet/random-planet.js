@@ -14,9 +14,13 @@ export default class RandomPlanet extends Component {
        loading: true
     }
 
-    constructor(){
-        super();
+    componentDidMount() {
         this.updatePlanet();
+        this.interval = setInterval(this.updatePlanet, 20000);
+    }
+    
+    componentWillUnmount() {
+        clearInterval(this.interval);
     }
 
     onPlanetLoaded = (planet) => {
@@ -34,7 +38,7 @@ export default class RandomPlanet extends Component {
         })
     }
 
-    updatePlanet(){
+    updatePlanet = () =>{
         const id= Math.floor(Math.random()*15 + 2);
         this.swdb.getPlanet(id)
         .then(this.onPlanetLoaded)
@@ -52,13 +56,13 @@ export default class RandomPlanet extends Component {
         const content = hasData ? <PlanetView planet={planet}/> : null;
 
         return(
-            <div className ="container">
+           
                 <div className="random-planet jumbotron rounded">
                     {errorMsg}
                     {spinner}
                     {content}
                 </div>
-            </div>
+           
         );
     }
 

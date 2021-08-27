@@ -4,8 +4,7 @@ import './header.css';
 
 const Header = () => {
     return (
-        <div class="row">
-            <div class="container">
+        
                 <div className="header d-flex align-items-baseline justify-content-between">
                     <h3>
                         <a href="#">
@@ -24,8 +23,7 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
-            </div>
-        </div>
+     
     );
 };
 
