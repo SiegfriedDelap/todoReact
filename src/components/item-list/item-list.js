@@ -4,20 +4,16 @@ import './item-list.css';
 import SwapiService from '../../services';
 import Spinner from '../spinner';
 
+
 export default class ItemList extends Component {
 
 	swdb = new SwapiService();
 
 	state = {
-		peopleList : null,
-		error: false
+		peopleList : null
 	};
 
-	onError =()=> {
-		this.setState({
-			error:true
-		})
-	}
+	
 
 	componentDidMount(){
 		this.swdb.getAllPeople()
@@ -26,7 +22,7 @@ export default class ItemList extends Component {
 				peopleList
 			});
 		})
-		.catch(this.onError)
+		.catch( (error) => ('We catch error while updating the person:' + error) )
 	}
 
 	renderItems(arr){
@@ -49,6 +45,7 @@ export default class ItemList extends Component {
 			return <Spinner />
 		}
 
+		
 		const items = this.renderItems(peopleList);
 
 		return (
