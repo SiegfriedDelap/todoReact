@@ -40,7 +40,7 @@ export default class App extends Component {
         <button className="btn btn-dark mb-4" onClick={this.toggleRandomPlanet}>Toggle Random Planet </button>
           <PeoplePage/>
 
-          <div className="row">
+          {/* <div className="row">
             <div className="col-md-6">
               <ItemList onItemSelected={this.onPersonSelected}
                         getData={this.swdb.getAllPlanets}
@@ -61,7 +61,7 @@ export default class App extends Component {
             <div className="col-md-6">
               <PersonDetails personId={this.state.selectedPerson}/>
             </div>
-          </div>
+          </div> */}
 
         </div>
       
