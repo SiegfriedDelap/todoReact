@@ -5,33 +5,46 @@ import ErrorIndicator from '../error-indicator';
 
 import './item-details.css';
 
+const Record = ({item, field, label}) => {
+  return(
+	<li className="list-group-item">
+		<span className="term">{label}</span>
+		<span>{item[field]}</span>
+	</li>
+  );
+};
+
+export {
+	Record
+}
+
 export default class ItemDetails extends Component {
 
   swdb = new SwapiService();
 
   state = {
-    item: null,
-    loading: false,
+	item: null,
+	loading: false,
   };
 
  
   componentDidMount(){
-    this.updateItem()
+	this.updateItem()
   }
 
   componentDidUpdate(prevProps){
-    if(this.props.personId !== prevProps.personId){
-      this.updateItem();
-    }
+	if(this.props.personId !== prevProps.personId){
+	  this.updateItem();
+	}
   }
 
   onItemLoaded = (item)=>{
-    this.setState({
-      item,
-      loading: false,
-	    error: false,
-      
-    });
+	this.setState({
+	  item,
+	  loading: false,
+		error: false,
+	  
+	});
   };
 
   
@@ -44,50 +57,52 @@ export default class ItemDetails extends Component {
   }
 
   updateItem(){
-    const {itemId, getData} = this.props;
-    //опредлеяем если нулл то ничего не делаем
-    if(!itemId){
-      return;
-    }
+	const {itemId, getData} = this.props;
+	//опредлеяем если нулл то ничего не делаем
+	if(!itemId){
+	  return;
+	}
 
-    this.setState({
-      loading: true
-    });
+	this.setState({
+	  loading: true
+	});
 
-    getData(itemId)
-    .then(this.onItemLoaded)
+	getData(itemId)
+	.then(this.onItemLoaded)
 	.catch(this.onError);
-    
+	
   }
 
   render() {
 
-    const {loading, item, error} = this.state;
+	const {loading, item, error} = this.state;
+	const {children} = this.props;
 
 	 
 
-    const notSelected = !item;
-    const hasData = item && !(loading||error);
+	const notSelected = !item;
+	const hasData = item && !(loading||error);
 
-    const hint = notSelected ? <span>Select an item from a list</span> : null;
-    const spinner = loading ? <Spinner/> : null;
-    const content = hasData ? <ItemView item={item} /> : null;
+	const hint = notSelected ? <span>Select an item from a list</span> : null;
+	const spinner = loading ? <Spinner/> : null;
+	const content = hasData ? <ItemView item={item} children={children} /> : null;
 
-    const errorMsg = error ? <ErrorIndicator/> : null;
+	const errorMsg = error ? <ErrorIndicator/> : null;
 
-    return (
+	return (
 		<div className="person-details card">
 			{errorMsg}
 			{hint}
 			{spinner}
 			{content}
 		</div>
-    )
+	)
   }
 }
 
-const ItemView = ({item}) => {
-	const {name, gender, birthYear, eyeColor, image} = item;
+const ItemView = ({item, children}) => {
+	const {name, image} = item;
+	
 
   
 	return(
@@ -102,18 +117,12 @@ const ItemView = ({item}) => {
 				<div className="card-body">
 				<h4>{name}</h4>
 				<ul className="list-group list-group-flush">
-					<li className="list-group-item">
-					<span className="term">Gender</span>
-					<span>{gender}</span>
-					</li>
-					<li className="list-group-item">
-					<span className="term">Birth Year</span>
-					<span>{birthYear}</span>
-					</li>
-					<li className="list-group-item">
-					<span className="term">Eye Color</span>
-					<span>{eyeColor}</span>
-					</li>
+					{
+						React.Children.map(children, (child)=>{
+							return React.cloneElement(child, {item})
+						})
+					}
+					{/* {children} */}
 				</ul>
 				</div>
 			

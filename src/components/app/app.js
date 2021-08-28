@@ -11,7 +11,7 @@ import Row from '../row';
 
 
 import './app.css';
-import ItemDetails from '../item-details';
+import ItemDetails, {Record} from '../item-details';
 
 export default class App extends Component {
 
@@ -40,14 +40,23 @@ export default class App extends Component {
       <ItemDetails 
       itemId={11} 
       getData={getPerson}
-      />
+      > 
+      <Record field="gender" label="Gender"/>
+      <Record field="eyeColor" label="Eye Color"/>
+     
+
+      </ItemDetails>
     );
 
     const starshipDetails =(
       <ItemDetails 
       itemId={5}
       getData={getStarship}
-       />
+      > 
+
+     
+      
+      </ItemDetails>
     );
 
     return (
