@@ -88,7 +88,7 @@ export default class ItemDetails extends Component {
   }
 }
 
-const ItemView = ({item, state:{image}}) => {
+const ItemView = ({item, image}) => {
 	const {name, gender, birthYear, eyeColor} = item;
 
   
