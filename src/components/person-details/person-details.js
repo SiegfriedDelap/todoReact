@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import SwapiService from '../../services';
 import Spinner from '../spinner';
+import ErrorIndicator from '../error-indicator';
 
 import './person-details.css';
 
@@ -10,9 +11,10 @@ export default class PersonDetails extends Component {
 
   state = {
     person: null,
-    loading: false
+    loading: false,
   };
 
+ 
   componentDidMount(){
     this.updatePerson()
   }
@@ -26,9 +28,17 @@ export default class PersonDetails extends Component {
   onPersonLoaded = (person)=>{
     this.setState({
       person,
-      loading: false
+      loading: false,
+	  error: false
     });
   };
+
+  onError=()=>{
+	this.setState({
+		error: true,
+		loading: false
+	})
+  }
 
   updatePerson(){
     const {personId} = this.props;
@@ -42,27 +52,29 @@ export default class PersonDetails extends Component {
     });
 
     this.swdb.getPerson(personId)
-    .then(this.onPersonLoaded);
+    .then(this.onPersonLoaded)
+	.catch(this.onError);
     
   }
 
   render() {
 
-    const {loading, person} = this.state;
+    const {loading, person, error} = this.state;
 
-    const notSelected = !person && !loading;
-    const hasData = person && !loading;
+	 
+
+    const notSelected = !person;
+    const hasData = person && !(loading||error);
 
     const hint = notSelected ? <span>Select a person from a list</span> : null;
     const spinner = loading ? <Spinner/> : null;
     const content = hasData ? <PersonView person={person} /> : null;
 
-    
-    
-
+    const errorMsg = error ? <ErrorIndicator/> : null;
 
     return (
 		<div className="person-details card">
+			{errorMsg}
 			{hint}
 			{spinner}
 			{content}
@@ -70,7 +82,6 @@ export default class PersonDetails extends Component {
     )
   }
 }
-
 
 const PersonView = ({person}) => {
 	const {id, name, gender, birthYear, eyeColor} = person;

@@ -43,6 +43,7 @@ export default class RandomPlanet extends Component {
         this.swdb.getPlanet(id)
         .then(this.onPlanetLoaded)
         .catch(this.onError);
+        
     }
 
     render(){
