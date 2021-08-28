@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import './item-list.css';
-import SwapiService from '../../services';
+
 import Spinner from '../spinner';
 
 

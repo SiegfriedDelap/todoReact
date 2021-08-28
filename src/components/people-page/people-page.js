@@ -1,33 +1,14 @@
 import React, {Component} from 'react';
 import ErrorIndicator from '../error-indicator';
 import ItemList from '../item-list';
-import PersonDetails from '../person-details';
+import ItemDetails from '../item-details';
 import SwapiService from '../../services';
 import Row from '../row';
+import ErrorBoundry from '../error-boundry';
 
 import './people-page.css';
 
-class ErrorBoundry extends Component {
 
-	state = {
-		hasError: false
-	};
-
-	componentDidCatch(){
-		this.setState({
-				hasError:true
-		});
-	}
-
-	render(){
-
-		if(this.state.hasError){
-			return <ErrorIndicator/>
-		}
-		
-		return this.props.children;
-	}
-}
 
 
 
@@ -62,13 +43,13 @@ export default class PeoplePage extends Component {
 					</ItemList>
 				);
 
-				const personDetails = (
-					<PersonDetails personId={this.state.selectedPerson}/>
+				const itemDetails = (
+					<ItemDetails personId={this.state.selectedPerson}/>
 				);
 
 				return(
 					<ErrorBoundry>
-						<Row left = {itemList} right = {personDetails} />
+						<Row left = {itemList} right = {itemDetails} />
 					</ErrorBoundry>
 				)
 		}

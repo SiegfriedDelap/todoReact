@@ -3,13 +3,15 @@ import React, {Component} from 'react';
 import Header from '../header';
 import RandomPlanet from '../random-planet';
 import PeoplePage from '../people-page';
-import ItemList from '../item-list';
-import PersonDetails from '../person-details';
+// import ItemList from '../item-list';
+// import ItemDetails from '../item-details';
 import SwapiService from '../../services';
+import Row from '../row';
 
 
 
 import './app.css';
+import ItemDetails from '../item-details';
 
 export default class App extends Component {
 
@@ -26,43 +28,42 @@ export default class App extends Component {
       }
     });
   };
-
  
 
   render(){
 
+    const {getPerson, getStarship, getPersonImage, getStarshipImage} = this.swdb;
+
     const randomPlanet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
+
+    const personDetails = (
+      <ItemDetails 
+      itemId={11} 
+      getData={getPerson}
+      getImg = {this.getPersonImage}/>
+    );
+
+    const starshipDetails =(
+      <ItemDetails 
+      itemId={5}
+      getData={getStarship}
+      getImg = {this.getStarshipImage}
+       />
+    );
 
     return (
       <div className="container">
         <Header />
-        {randomPlanet}
+        {/* {randomPlanet}
         <button className="btn btn-dark mb-4" onClick={this.toggleRandomPlanet}>Toggle Random Planet </button>
-          <PeoplePage/>
+          <PeoplePage/> */}
 
-          {/* <div className="row">
-            <div className="col-md-6">
-              <ItemList onItemSelected={this.onPersonSelected}
-                        getData={this.swdb.getAllPlanets}
-                        renderItem={({name, diameter}) => `${name} (${diameter})`}/>
-            </div>
-            <div className="col-md-6">
-              <PersonDetails personId={this.state.selectedPerson}/>
-            </div>
-          </div>
+          <Row
+            left={personDetails}
+            right={starshipDetails}
+           />
 
-
-          <div className="row">
-            <div className="col-md-6">
-              <ItemList onItemSelected={this.onPersonSelected}
-                        getData={this.swdb.getAllStarships}
-                        renderItem={({name, length}) => `${name} (${length})`}/>
-            </div>
-            <div className="col-md-6">
-              <PersonDetails personId={this.state.selectedPerson}/>
-            </div>
-          </div> */}
-
+         
         </div>
       
     );
