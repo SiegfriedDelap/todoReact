@@ -12,7 +12,6 @@ export default class ItemDetails extends Component {
   state = {
     item: null,
     loading: false,
-    image:null
   };
 
  
@@ -29,7 +28,6 @@ export default class ItemDetails extends Component {
   onItemLoaded = (item)=>{
     this.setState({
       item,
-      image: getImg(item),
       loading: false,
 	    error: false,
       
@@ -46,7 +44,7 @@ export default class ItemDetails extends Component {
   }
 
   updateItem(){
-    const {itemId, getData, getImg} = this.props;
+    const {itemId, getData} = this.props;
     //опредлеяем если нулл то ничего не делаем
     if(!itemId){
       return;
@@ -88,8 +86,8 @@ export default class ItemDetails extends Component {
   }
 }
 
-const ItemView = ({item, image}) => {
-	const {name, gender, birthYear, eyeColor} = item;
+const ItemView = ({item}) => {
+	const {name, gender, birthYear, eyeColor, image} = item;
 
   
 	return(

@@ -32,7 +32,7 @@ export default class App extends Component {
 
   render(){
 
-    const {getPerson, getStarship, getPersonImage, getStarshipImage} = this.swdb;
+    const {getPerson, getStarship} = this.swdb;
 
     const randomPlanet = this.state.showRandomPlanet ? <RandomPlanet /> : null;
 
@@ -40,14 +40,13 @@ export default class App extends Component {
       <ItemDetails 
       itemId={11} 
       getData={getPerson}
-      getImg = {this.getPersonImage}/>
+      />
     );
 
     const starshipDetails =(
       <ItemDetails 
       itemId={5}
       getData={getStarship}
-      getImg = {this.getStarshipImage}
        />
     );
 
