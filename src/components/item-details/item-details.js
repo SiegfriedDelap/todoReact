@@ -75,7 +75,6 @@ export default class ItemDetails extends Component {
               })
             }
           </ul>
-          <ErrorButton />
         </div>
       </div>
     );

@@ -1,6 +1,8 @@
 .header {
 	margin-top: .5rem;
 	padding-left: 10px;
+	justify-content: space-between;
+	align-items: baseline;
 }
   
 .header ul li {
