@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ErrorButton from '../error-button';
+import ErrorButton from '../error-button/error-button';
 
 import './item-details.css';
 
@@ -29,7 +29,9 @@ export default class ItemDetails extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.itemId !== prevProps.itemId) {
+    if (this.props.itemId !== prevProps.itemId ||
+      this.props.getData !== prevProps.getData ||
+      this.props.getImageUrl !== prevProps.getImageUrl) {
       this.updateItem();
     }
   }
