@@ -21,8 +21,8 @@ const withChildFunction = (Wrapped, fn) => {
   };
 };
 
-const renderName = ({ name }) => <span>{name}</span>;
-const renderModelAndName = ({ model, name}) => <span>{name} ({model})</span>;
+const renderName = ({ name }) => <span> {name} </span>;
+const renderModelAndName = ({ model, name}) => <span> {name} ({model}) </span>;
 
 const PersonList = withData(
                       withChildFunction(ItemList, renderName),

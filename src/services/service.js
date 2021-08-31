@@ -43,6 +43,19 @@ export default class SwapiService {
         return this._transformStarship(starship);
     }
 
+    getPersonImage = ({id}) => {
+        return `${this._imageBase}/characters/${id}.jpg`
+      };
+    
+      getStarshipImage = ({id}) => {
+        return `${this._imageBase}/starships/${id}.jpg`
+      };
+    
+      getPlanetImage = ({id}) => {
+        return `${this._imageBase}/planets/${id}.jpg`
+      };
+    
+
     _extractId = (item) => {
         const idRegExp = /\/([0-9]*)\/$/;
         return item.url.match(idRegExp)[1];//first group from regExp
