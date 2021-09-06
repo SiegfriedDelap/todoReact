@@ -9,7 +9,7 @@ import DummySwapiService from '../../services/dummy-swapi-service';
 import { LoginPage, PeoplePage, PlanetsPage, StarshipsPage, SecretPage } from '../pages';
 import { SwapiServiceProvider } from '../swapi-service-context';
 
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
 
 import './app.css';
 import { StarshipDetails } from '../sw-components';
@@ -49,26 +49,28 @@ export default class App extends Component {
 								<Header onServiceChange={this.onServiceChange} />
 
 								<RandomPlanet />
+								<Switch>
+									<Route path='/' render={() => <h2>Den dobry!</h2>} exact />
+									<Route path='/people/:id?' component={PeoplePage} />
+									<Route path='/planets' component={PlanetsPage} />
+									<Route path='/starships' exact component={StarshipsPage} />
+									<Route path='/starships/:id' render={({ match }) => {
+										const { id } = match.params;
+										return <StarshipDetails itemId={id} />
 
-								<Route path='/' render={() => <h2>Den dobry!</h2>} exact />
-								<Route path='/people/:id?' component={PeoplePage} />
-								<Route path='/planets' component={PlanetsPage} />
-								<Route path='/starships' exact component={StarshipsPage} />
-								<Route path='/starships/:id' render={({ match }) => {
-									const { id } = match.params;
-									return <StarshipDetails itemId={id} />
-
-								}} />
-								<Route path='/login'
-									render={() => (
-										<LoginPage
-											isLoggedIn={isLoggedIn}
-											onLogin={this.onLogin} />
-									)} />
-								<Route path='/secret'
-									render={() => (
-										<SecretPage isLoggedIn={isLoggedIn} />
-									)} />
+									}} />
+									<Route path='/login'
+										render={() => (
+											<LoginPage
+												isLoggedIn={isLoggedIn}
+												onLogin={this.onLogin} />
+										)} />
+									<Route path='/secret'
+										render={() => (
+											<SecretPage isLoggedIn={isLoggedIn} />
+										)} />
+									<Route render={()=> <h2>Page not found!</h2>} />
+								</Switch>
 
 							</div>
 						</div>
