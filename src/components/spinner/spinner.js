@@ -3,9 +3,7 @@ import './spinner.css';
 
 const Spinner = () => {
     return(
-        <div className = 'wrapper'>
-
-        </div>
+        <div className="lds-default"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
     )
 }
 
