@@ -6,12 +6,16 @@ import {HomePage, CartPage} from '../pages';
 
 
 const App = ({bookstoreService}) => {
-    console.log(bookstoreService.getBooks());
     return (
         <Switch>
             <Route 
                 path="/"
                 component={HomePage}
+                exact
+            />
+             <Route 
+                path="/cart"
+                component={CartPage}
             />
         </Switch>
     )
