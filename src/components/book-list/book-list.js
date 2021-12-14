@@ -3,7 +3,8 @@ import BookListItem from "../book-list-item";
 import {connect} from 'react-redux';
 import { bindActionCreators } from "redux";
 import { withBookstoreService } from "../hoc";
-import {booksLoaded} from '../../actions'
+import {booksLoaded} from '../../actions';
+import compose from '../../utils';
 import './book-list.css';
 
 class BookList extends Component {
@@ -38,15 +39,25 @@ const mapStatetoProps = ({books}) => {
     };
 };
 
-const mapDispatchToProps = (dispatch)=>{
-    // return{
-    //     booksLoaded: (newBooks) => {
-    //         dispatch(booksLoaded(newBooks));
-    //     }
-    // };
-    return bindActionCreators({
-        booksLoaded
-    }, dispatch);
+// const mapDispatchToProps = (dispatch)=>{
+//     // return{
+//     //     booksLoaded: (newBooks) => {
+//     //         dispatch(booksLoaded(newBooks));
+//     //     }
+//     // };
+//     // return bindActionCreators({
+//     //     booksLoaded
+//     // }, dispatch);
+    
+// };
+
+const mapDispatchToProps = {
+    booksLoaded
 };
 
-export default withBookstoreService()(connect(mapStatetoProps, mapDispatchToProps)(BookList));
+export default compose(
+    withBookstoreService(),
+    connect(mapStatetoProps, mapDispatchToProps)
+)(BookList);
+
+// export default withBookstoreService()(connect(mapStatetoProps, mapDispatchToProps)(BookList));
