@@ -3,13 +3,17 @@ export default class BookstoreService{
         return [
             {
                 id: 1, 
-                name: 'Fahrenheit 451',
-                author: 'Ray Douglas Bradbury'
+                title: 'Fahrenheit 451',
+                author: 'Ray Douglas Bradbury',
+                price: 88,
+                coverImage: 'https://www.britishbook.ua/upload/resize_cache/iblock/d7a/298_457_174b5ed2089e1946312e2a80dcd26f146/kniga_fahrenheit_451.jpg'    
             },
             {
                 id: 2,
-                name: 'Lolita',
-                author: 'Vladimir Nobakov'
+                title: 'Lolita',
+                author: 'Vladimir Nobakov',
+                price: 14,
+                coverImage: 'https://upload.wikimedia.org/wikipedia/commons/5/57/Lolita_1955.JPG'
             }
         ];
     }

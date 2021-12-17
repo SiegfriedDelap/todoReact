@@ -3,10 +3,12 @@ import Spinner from "../spinner";
 import {withBookstoreService} from '../hoc';
 import {Route, Router, Switch} from 'react-router-dom';
 import {HomePage, CartPage} from '../pages';
-
+import ShopHeader from "../shop-header";
 
 const App = ({bookstoreService}) => {
     return (
+        <main role="main" className="container">
+        <ShopHeader numItems={2} total={102}/>
         <Switch>
             <Route 
                 path="/"
@@ -18,6 +20,7 @@ const App = ({bookstoreService}) => {
                 component={CartPage}
             />
         </Switch>
+        </main>
     )
 };
 
