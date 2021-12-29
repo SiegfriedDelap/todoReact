@@ -5,7 +5,7 @@ export default class BookstoreService{
             title: 'Fahrenheit 451',
             author: 'Ray Douglas Bradbury',
             price: 88,
-            coverImage: 'https://www.britishbook.ua/upload/resize_cache/iblock/d7a/298_457_174b5ed2089e1946312e2a80dcd26f146/kniga_fahrenheit_451.jpg'    
+            coverImage: 'https://cdn.eksmo.ru/v2/ITD000000000836330/COVER/cover1__w600.jpg'    
         },
         {
             id: 2,
