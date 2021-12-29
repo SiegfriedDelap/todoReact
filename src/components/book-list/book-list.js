@@ -3,13 +3,27 @@ import BookListItem from "../book-list-item";
 import {connect} from 'react-redux';
 import { bindActionCreators } from "redux";
 import { withBookstoreService } from "../hoc";
-import {booksLoaded, booksRequested, booksError} from '../../actions';
+import {fetchBooks} from '../../actions';
 import compose from '../../utils';
 import Spinner from '../spinner';
 import ErrorIndicator from '../error-indicator';
 import './book-list.css';
 
-class BookList extends Component {
+const BookList = ({books}) => {
+    return(
+        <ul className="book-list">
+            {
+                books.map((book)=>{
+                    return(
+                        <li key={book.id}><BookListItem book={book}/></li>
+                    )
+                })
+            }
+        </ul>
+    );
+}
+
+class BookListContainer extends Component {
     componentDidMount(){
         this.props.fetchBooks();
     }
@@ -23,19 +37,12 @@ class BookList extends Component {
         if(error){
             return <ErrorIndicator/>
         }
-        return(
-            <ul className="book-list">
-                {
-                    books.map((book)=>{
-                        return(
-                            <li key={book.id}><BookListItem book={book}/></li>
-                        )
-                    })
-                }
-            </ul>
-        );
+
+        return <BookList books={books} />
+       
     }
 }
+
 
 
 const mapStatetoProps = ({books, loading, error}) => {
@@ -46,33 +53,15 @@ const mapStatetoProps = ({books, loading, error}) => {
     };
 };
 
-// const mapDispatchToProps = (dispatch)=>{
-//     // return{
-//     //     booksLoaded: (newBooks) => {
-//     //         dispatch(booksLoaded(newBooks));
-//     //     }
-//     // };
-//     // return bindActionCreators({
-//     //     booksLoaded
-//     // }, dispatch);
-    
-// };
-
-const mapDispatchToProps = (dispatch, ownProps) => {
-    const {bookstoreService} = ownProps;
+const mapDispatchToProps = (dispatch, {bookstoreService}) => {
     return {
-        fetchBooks: () => {
-            dispatch(booksRequested());
-            bookstoreService.getBooks()
-            .then((data) => dispatch(booksLoaded(data)))
-            .catch((err)=>dispatch(booksError(err)));
-        }
+       fetchBooks: fetchBooks(dispatch, bookstoreService)
     }
 }
 
 export default compose(
     withBookstoreService(),
     connect(mapStatetoProps, mapDispatchToProps)
-)(BookList);
+)(BookListContainer);
 
 // export default withBookstoreService()(connect(mapStatetoProps, mapDispatchToProps)(BookList));
