@@ -57,10 +57,10 @@ const mapStatetoProps = ({bookList:{books, loading, error}}) => {
 };
 
 const mapDispatchToProps = (dispatch, {bookstoreService}) => {
-    return {
-       fetchBooks: fetchBooks(dispatch, bookstoreService),
-       onAddedToCart : (id) => dispatch(bookAddedToCart(id))
-    }
+    return bindActionCreators({
+        fetchBooks: fetchBooks(bookstoreService),
+        onAddedToCart : bookAddedToCart
+    }, dispatch);
 }
 
 export default compose(
