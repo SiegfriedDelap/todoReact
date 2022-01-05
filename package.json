@@ -8,7 +8,7 @@
   },
   "author": "Siegfried",
   "license": "ISC",
-  "browserslist":[
+  "browserslist": [
     ">0.3%"
   ],
   "devDependencies": {
@@ -17,6 +17,7 @@
     "@babel/plugin-transform-block-scoping": "^7.16.7",
     "@babel/plugin-transform-classes": "^7.16.7",
     "@babel/plugin-transform-template-literals": "^7.16.7",
-    "@babel/preset-env": "^7.16.7"
+    "@babel/preset-env": "^7.16.7",
+    "@babel/preset-react": "^7.16.7"
   }
 }
