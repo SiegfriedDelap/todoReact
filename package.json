@@ -1,0 +1,15 @@
+{
+  "name": "build-babel-webpack",
+  "version": "1.0.0",
+  "description": "Sandbox for React",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Siegfried",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.16.7",
+    "@babel/core": "^7.16.7"
+  }
+}
