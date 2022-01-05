@@ -8,6 +8,9 @@
   },
   "author": "Siegfried",
   "license": "ISC",
+  "browserslist":[
+    ">0.3%"
+  ],
   "devDependencies": {
     "@babel/cli": "^7.16.7",
     "@babel/core": "^7.16.7",
