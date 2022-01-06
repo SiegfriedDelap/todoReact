@@ -3,8 +3,9 @@ module.exports = {
 
     module: {
         rules: [
+            //Images
             {
-                test: /\.png$/, 
+                test: /\.(png|jpg|jpeg|gif|ico)$/, 
                 use: [
                     {
                         loader: 'file-loader',
@@ -14,7 +15,20 @@ module.exports = {
                         }
                     }
                 ]
-            }
+            },
+            //Fonts
+            {
+                test: /\.(ttf|otf|eot|woff|woff2)$/, 
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            outputPath : 'fonts',
+                            name : '[name].[ext]'
+                        }
+                    }
+                ]
+            },
         ]
     }
 }
