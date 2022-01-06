@@ -4,8 +4,8 @@
   "description": "Sandbox for React",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server",
-    "build": "webpack",
+    "start": "webpack-dev-server  --env development --mode development",
+    "build": "webpack --env production --mode production",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Siegfried",
