@@ -1,8 +1,19 @@
+
 module.exports = {
     mode: "development",
-
+    
     module: {
         rules: [
+            //JS
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'babel-loader'
+                    }
+                ]
+            },
             //Images
             {
                 test: /\.(png|jpg|jpeg|gif|ico)$/, 
@@ -29,6 +40,18 @@ module.exports = {
                     }
                 ]
             },
+            //CSS loaders working from bottom to up
+            {
+                test: /\.(css)$/,
+                use:[
+                    {
+                        loader: 'style-loader'
+                    },
+                    {
+                        loader: 'css-loader'
+                    }
+                ]
+            }
         ]
     }
 }
