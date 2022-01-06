@@ -5,12 +5,16 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = (env, argv) => {
     let isMode = '';
-    if (argv.mode === 'development') {
-        isMode = 'development';
-    } else if (argv.mode === 'production') {
-        isMode = 'production';
-    } else {
-        isMode = 'development';
+
+    switch(argv.mode){
+        case 'development':
+            isMode = 'development';
+            break;
+        case 'production':
+            isMode = 'production';
+            break;
+        default:
+            isMode = 'development';
     }
 
     const getStyleLoaders = () => {
