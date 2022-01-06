@@ -16,7 +16,7 @@
   \*********************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"ffc241909ec922708b15887689aea8e3.png\");\n\n//# sourceURL=webpack://build-babel-webpack/./src/cat.png?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony default export */ __webpack_exports__[\"default\"] = (__webpack_require__.p + \"images/cat-34e0039.png\");\n\n//# sourceURL=webpack://build-babel-webpack/./src/cat.png?");
 
 /***/ }),
 

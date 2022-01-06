@@ -7,7 +7,11 @@ module.exports = {
                 test: /\.png$/, 
                 use: [
                     {
-                        loader: 'file-loader'
+                        loader: 'file-loader',
+                        options: {
+                            outputPath : 'images',
+                            name : '[name]-[sha1:hash:7].[ext]'
+                        }
                     }
                 ]
             }
